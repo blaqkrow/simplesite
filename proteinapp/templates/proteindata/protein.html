@@ -1,0 +1,46 @@
+{% extends "./base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+    <h2 class="text-center mb-5">Protein {{ protein.protein_id }}</h2>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Protein ID: {{ protein.protein_id }}</h5>
+                    <div class="card-text">
+                        <h4>Sequence</h4>
+                        <p>{{ protein.sequence}}</p>
+                        <h4>Length</h4>
+                        <p>{{ protein.length}}</p>
+                        <hr>
+                        {% with taxonomy=protein.taxonomy %}
+                        <h4>Taxonomy ID</h4>
+                        <p>{{ taxonomy.taxa_id}}</p>
+                        <h4>Clade</h4>
+                        <p>{{ taxonomy.clade}}</p>
+                        <h4>Genus</h4>
+                        <p>{{ taxonomy.genus}}</p>
+                        <h4>Species</h4>
+                        <p>{{ taxonomy.species}}</p>
+                        {% endwith %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            {% for domain in domains %}
+                {% with pfam=domain.pfam %}
+                <h4>Domain {{ pfam.domain_id }}</h4>
+                {% endwith %}
+            <p>Start: {{ domain.start }}</p>
+            <p>Stop: {{ domain.stop }}</p>
+            <p>Description: {{ domain.description }}</p>
+            <hr>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

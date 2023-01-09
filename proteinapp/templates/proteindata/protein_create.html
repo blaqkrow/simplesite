@@ -1,0 +1,30 @@
+{% extends "./base.html" %} {% load bootstrap4 %} {% block content %}
+
+<div class="container">
+  <div class="row">
+    <h2 class="text-center">Add New Protein</h2>
+    <form action="/create_protein/" method="post">
+      {% csrf_token %} {% bootstrap_form form %}
+      <input type="submit" value="Submit" class="btn btn-primary" />
+    </form>
+  </div>
+  <div class="row">
+    <h2 class="text-center">Current Proteins</h2>
+  </div>
+  <div class="row">
+    <table>
+      <tr>
+        <th>Protein ID</th>
+      </tr>
+      {% for protein in proteins %}
+      <tr>
+        <td>
+          <a href="/protein/{{protein.protein_id}}">{{ protein.protein_id }}</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+{% endblock %}

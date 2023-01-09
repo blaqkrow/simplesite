@@ -1,0 +1,29 @@
+{% extends "./base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+    <div class="row py-3">
+        <a href="/create_protein/" class="btn btn-primary">Add Protein Entry</a>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <table>
+                <tr><th>Protein ID</th></tr>
+                {% for protein in proteins %}
+                <tr><td><a href="/protein/{{protein.protein_id}}">{{ protein.protein_id }}</a></td></tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-lg-6">
+            <table>
+                <tr><th>Domain ID</th></tr>
+                {% for domain in domains %}
+                <tr><td><a href="/domain/{{domain.domain_id}}">{{ domain.domain_id }}</a></td></tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
